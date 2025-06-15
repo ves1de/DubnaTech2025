@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профориентационное тестирование</title>
+    <style>
+        /* Общие стили */
+        * {
+      box-sizing: border-box;
+      margin: 13px;
+      padding: 0px;
+    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(#b2b3ce56, #FFFFFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Контейнер обертки, чтобы занимать максимум пространства и быть отзывчивым */
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 10px;
+    align-items: flex-start; /* выравнивание по верхнему краю */
+    box-sizing: border-box;
+    
+}
+
+/* Блок с приветственным текстом */
+.welcome-text {
+    flex: 1 1 45%;
+    min-width: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+/* Блок регистрации */
+.registration-form {
+    flex: 1 1 45%;
+    min-width: 250px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 50px;
+    box-shadow: 0 10px 15px 9px #A2C759;
+    box-sizing: border-box;
+}
+
+/* Заголовки внутри формы */
+.registration-form h2 {
+    margin-top: 0;
+}
+
+/* Инпуты и селекты по ширине */
+.registration-form input[type=email],
+.registration-form input[type=text],
+.registration-form input[type=tel],
+.registration-form input[type=number] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Метки */
+.registration-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Центрирование кнопки */
+.start-button-container {
+   width: 100%;
+   text-align: center;
+   margin-top: 20px;
+}
+
+/* Кнопка */
+.btn-new {
+    width: 50%;
+    max-width: 250px;
+    height: 60px;
+    padding: 10px 20px;
+    background-color: #A2C759;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 0 5px 15px #A2C759;
+    transition: 0.5s;
+    cursor: pointer;
+    font-size: 18px;
+    margin: auto;
+    display: block;
+    position: relative;
+    margin-left: 19%;
+    
+    
+}
+
+.btn-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px #A2C759;
+}
+
+/* Фиксированный футер */
+.footer {
+    width: 17%;
+    position: absolute;
+    bottom: 20%;
+    left: 4%;   
+}
+
+/* Логотип в футере */
+.footer img {
+    width: 60%;
+}
+
+#opa {
+    font-size: 20px;
+}
+
+/* Медиазапрос для смартфонов и очень маленьких экранов */
+@media(max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 10px;
+    }
+    .welcome-text, .registration-form {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 30px;
+    }
+    .start-button-container {
+        margin-top: 20px;
+    }
+    .btn-new {
+        width: 80%;
+        max-width: 300px;
+        height: 50px;
+        font-size: 16px;
+        margin-left: 9%;
+        margin-top: 10%;
+        
+    }
+    /* Размер логотипа */
+    .footer img {
+        width: 60px;
+    }
+    .footer {
+    position: absolute;
+    bottom: 91%;
+    left: 85%;
+}
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-text">
+            <h1>Добро пожаловать!</h1>
+            
+                
+                <p>Наш университет предлагает уникальную возможность определиться с направлением подготовки, которое наилучшим образом соответствует вашим интересам и способностям.</p>
+
+                    <p>Для прохождения профориентационного тестирования и получения рекомендаций по выбору специальности просим вас зарегистрироваться на нашем сайте.</p>
+                
+                <p>Начните свое путешествие к успешной карьере прямо сейчас!</p>
+            
+        <div class="start-button-container">
+        
+        </div></div>
+        
+        <div class="registration-form">
+            <h2>Регистрация</h2><br>
+            <form id="regForm">
+                <input type="email" placeholder="Электронная почта" required>
+                <input type="text" placeholder="Имя" required>
+                <input type="tel" placeholder="Телефон" required>
+              
+                <input type="number" placeholder="Возраст" required min="1">
+                <label>
+                    <input type="checkbox" required> Согласен на обработку данных
+                </label>
+            </form>
+        </div>
+        <!-- Кнопка "Начать", расположенная под формой --><button class="btn-new" type="submit">Начать</button>
+        
+    </div>
+
+    
+    
+
+    <footer class="footer">
+        <img src="img/logo.png" alt="Логотип университета">
+    </footer>
+
+    <script >
+      document.querySelector('.btn-new').addEventListener('click', function() {
+    const form = document.getElementById('regForm');
+    
+    // Проверяем заполненность всех полей
+    const inputs = form.querySelectorAll('input[required]');
+    
+    let allFilled = true;
+
+    inputs.forEach(input => {
+        if (!input.value || !input.checkValidity()) {
+            allFilled = false; // Если есть незаполненные или некорректные поля
+        }
+    });
+
+    if (allFilled) {
+        // Если все поля заполнены и корректны, перенаправляем на страницу чат-бота
+        window.location.href = 'test.html'; // Переход к тесту
+    } else {
+        alert('Пожалуйста, заполните все поля и проверьте корректность!'); // Сообщение об ошибке
+    }
+});
+    </script>
+</body>
+</html>

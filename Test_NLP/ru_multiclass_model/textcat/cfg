@@ -1,0 +1,25 @@
+{
+  "labels":[
+    "IVT",
+    "IST",
+    "BI",
+    "PI",
+    "PRINJ",
+    "ECONOMIC",
+    "YFT",
+    "FIZIKA",
+    "AVIA",
+    "EE",
+    "KTES",
+    "URI",
+    "GMY",
+    "KLINPSY",
+    "PSY",
+    "LANG",
+    "SOCIOLOG",
+    "HFMM",
+    "HIMIYA"
+  ],
+  "threshold":0.0,
+  "positive_label":null
+}

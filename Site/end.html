@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты теста</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(#b2b3ce56, #FFFFFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Фиксированный футер */
+.footer {
+    width: 17%;
+    position: absolute;
+    bottom: 3%;
+    left: 5%;   
+}
+
+/* Логотип в футере */
+.footer img {
+    width: 60%;
+}
+        .close-btn {
+            position: fixed;
+    top: 5%;
+    right: 10%;
+    width: 40px;
+    height: 40px;
+    background: #A2C759;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+        }
+
+        .close-btn:hover {
+            background: #A2C759;
+            color: white;
+            
+        }
+
+        .result-container {
+            width: 600px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 9px 2px #A2C759;
+            position: relative;
+            margin: 20px;
+            animation: scaleIn 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .direction-name {
+            color: #A2C759;
+            font-size: 2em;
+            margin: 20px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .direction-description {
+            line-height: 1.8;
+            color: #666;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        .recommendations {
+            margin-top: 40px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            padding: 15px;
+            margin: 10px 0;
+            background: #b2b3ce34;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .recommendations li:hover {
+            transform: translateX(10px);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .recommendations li::before {
+            content: '✓';
+            color: #A2C759;
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+        /* Адаптив */
+  @media (max-width: 768px) {
+    
+     /* Размер логотипа */
+     .footer img {
+        width: 60px;
+    }
+    .footer {
+    position: absolute;
+    bottom: 88%;
+    left: 5%;
+}
+  }
+    </style>
+</head>
+<body>
+    <!-- Кнопка закрытия -->
+    <div class="close-btn" onclick="redirectToUniversity()">×</div>
+
+    <div class="result-container">
+        <h1>Ваши результаты</h1>
+        
+        <div class="congrats">
+            Поздравляем! На основе ваших ответов мы определили наиболее подходящее для вас направление.
+        </div>
+
+        <div class="direction-name" id="directionName">Информатика и вычислительная техника</div>
+        
+        <div class="direction-description" id="directionDescription">
+            Ваши ответы свидетельствуют о сильных аналитических способностях и интересе к решению сложных задач.
+        </div>
+
+        <div class="recommendations">
+            <h2>Вас могут заинтерисовать следующие обучающие курсы:</h2>
+            <ul id="recommendationsList"></ul>
+        </div>
+    </div>
+    <footer class="footer">
+        <img src="img/logo.png" alt="Логотип университета">
+    </footer>
+
+    <script>
+        // Данные для результатов
+        const resultsData = {
+            technical: {
+                name: "Информатика и вычислительная техника",
+                description: "Идеально подходит для работы с технологиями и инновациями. Рекомендуемые области: программирование, инженерия, робототехника.",
+                recommendations: [
+                    "Курс по машинному обучению",
+                    "Программирование на Python",
+                    "Основы кибербезопасности",
+                    "Системное администрирование"
+                ]
+            },
+            humanitarian: {
+                name: "Клиническая психология",
+                description: "Подходит для работы с людьми и социальными системами. Перспективные области: психология, социология, международные отношения.",
+                recommendations: [
+                    "Курс по межкультурной коммуникации",
+                    "Основы психологии личности",
+                    "Публичные выступления",
+                    "Социальная антропология"
+                ]
+            },
+            creative: {
+                name: "Прикладная информатика",
+                description: "Идеально для реализации в искусстве и креативных индустриях. Перспективные направления: дизайн, медиа, современное искусство.",
+                recommendations: [
+                    "Графический дизайн для начинающих",
+                    "Цифровая иллюстрация",
+                    "Фотография и композиция",
+                    "Сценарное мастерство"
+                ]
+            }
+        };
+
+        // Логика выбора результата
+        function getResult() {
+            const types = Object.keys(resultsData);
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            return resultsData[randomType];
+        }
+
+        // Заполнение данных
+        function renderResults() {
+            const result = getResult();
+            document.getElementById('directionName').textContent = result.name;
+            document.getElementById('directionDescription').textContent = result.description;
+            
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = result.recommendations
+                .map(item => `<li>${item}</li>`)
+                .join('');
+        }
+
+        // Перенаправление
+        function redirectToUniversity() {
+            window.location.href = "https://uni-dubna.ru/";
+        }
+
+        // Инициализация
+        renderResults();
+    </script>
+</body>
+</html>
